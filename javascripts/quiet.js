@@ -64,12 +64,6 @@ var Quiet = (function() {
             console.log(audioCtx.sampleRate);
         }
     };
-    
-    function resumeAudioContext() {
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-    };
 
     function fail(reason) {
         failReason = reason;
@@ -242,7 +236,6 @@ var Quiet = (function() {
      * this length or shorter
      * @property {function} getAverageEncodeTime - returns average time in ms spent encoding data
      * into sound samples over the last 3 runs
-     * @property {function} getProfile - get the profile object used to create this transmitter
      */
 
     /**
@@ -280,14 +273,11 @@ var Quiet = (function() {
     function transmitter(opts) {
         var profile = opts.profile;
         var c_profiles, c_profile;
-        var profileObj;
         if (typeof profile === 'object') {
-            profileObj = profile;
-            c_profiles = Module.intArrayFromString(JSON.stringify({"profile": profileObj}));
+            c_profiles = Module.intArrayFromString(JSON.stringify({"profile": profile}));
             c_profile = Module.intArrayFromString("profile");
         } else {
             // get an encoder_options object for our quiet-profiles.json and profile key
-            profileObj = JSON.parse(profiles)[profile];
             c_profiles = Module.intArrayFromString(profiles);
             c_profile = Module.intArrayFromString(profile);
         }
@@ -352,7 +342,6 @@ var Quiet = (function() {
         };
 
         var startTransmitter = function () {
-            resumeAudioContext();
             if (destroyed) {
                 return;
             }
@@ -461,7 +450,7 @@ var Quiet = (function() {
 
             // libquiet notifies us that the payload is finished by
             // returning written < number of samples we asked for
-            if (frame_available === false && written === -1) {
+            if (frame_available === false && written === 0) {
                 if (empties_written < 3) {
                     // flush out browser's sound sample buffer before quitting
                     for (var i = 0; i < sampleBufferSize; i++) {
@@ -533,16 +522,11 @@ var Quiet = (function() {
             return total/(last_emit_times.length);
         };
 
-        var getProfile = function() {
-            return Object.assign({}, profileObj);
-        };
-
         return {
             transmit: transmit,
             destroy: destroy,
             frameLength: frame_len,
-            getAverageEncodeTime: getAverageEncodeTime,
-            getProfile: getProfile
+            getAverageEncodeTime: getAverageEncodeTime
         };
     };
 
@@ -722,7 +706,6 @@ var Quiet = (function() {
         var opt = Module.ccall('quiet_decoder_profile_str', 'pointer', ['array', 'array'], [c_profiles, c_profile]);
 
         initAudioContext();
-        resumeAudioContext();
         // quiet does not create an audio input when it starts
         // getting microphone access requires a permission dialog so only ask for it if we need it
         if (gUM === undefined) {
