@@ -1,8 +1,8 @@
 var QuietInitializer = (function() {
     Quiet.init({
-        profilesPrefix: "js/",
-        memoryInitializerPrefix: "js/",
-        libfecPrefix: "js/"
+        profilesPrefix: "javascripts/",
+        memoryInitializerPrefix: "javascripts/",
+        libfecPrefix: "javascripts/"
     });
 
     function onDOMLoad() {
