@@ -16,7 +16,7 @@ var TextTransmitter = (function() {
         var originalText = btn.innerText;
         btn.innerText = btn.getAttribute('data-quiet-sending-text');
         btn.setAttribute('data-quiet-sending-text', originalText);
-        Quiet.initAudioContext();
+        Quiet.resumeAudioContext();
     };
 
     function onClick(e) {
