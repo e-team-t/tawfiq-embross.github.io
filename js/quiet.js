@@ -68,6 +68,7 @@ var Quiet = (function() {
     function resumeAudioContext() {
         if (audioCtx !== undefined) {
             audioCtx.resume();
+            console.log(audioCtx.state);
         }
     };
 
