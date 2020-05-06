@@ -37,6 +37,7 @@ var TextTransmitter = (function() {
     function onQuietReady() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
         transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
+        resumeAudio = Quiet.audioCtx; 
         btn.addEventListener('click', onClick, false);
     };
 
