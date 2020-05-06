@@ -65,7 +65,7 @@ var Quiet = (function() {
         }
     };
     
-    var resumeAudio = function resumeAudioContext() {
+    var resumeAudio = function() {
         if (audioCtx !== undefined) {
             audioCtx.resume();
             console.log(audioCtx.state);
