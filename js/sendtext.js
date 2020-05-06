@@ -8,7 +8,6 @@ var TextTransmitter = (function() {
     var textbox;
     var warningbox;
     var transmit;
-    var resumeAudio;
 
     function onTransmitFinish() {
         textbox.focus();
@@ -20,7 +19,6 @@ var TextTransmitter = (function() {
     };
 
     function onClick(e) {
-        resumeAudio.resumeAudio();
         e.target.removeEventListener(e.type, arguments.callee);
         e.target.disabled = true;
         var originalText = e.target.innerText;
@@ -37,7 +35,6 @@ var TextTransmitter = (function() {
     function onQuietReady() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
         transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
-        resumeAudio = Quiet.audioCtx; 
         btn.addEventListener('click', onClick, false);
     };
 
