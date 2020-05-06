@@ -29,6 +29,7 @@ var TextTransmitter = (function() {
             onTransmitFinish();
             return;
         }
+        Quiet.audioCtx.resume();
         transmit.transmit(Quiet.str2ab(payload));
     };
 
