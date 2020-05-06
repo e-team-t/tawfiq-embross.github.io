@@ -19,6 +19,7 @@ var TextTransmitter = (function() {
     };
 
     function onClick(e) {
+        audioCtx2 = new (window.AudioContext || window.webkitAudioContext)();
         e.target.removeEventListener(e.type, arguments.callee);
         e.target.disabled = true;
         var originalText = e.target.innerText;
