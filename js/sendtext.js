@@ -8,6 +8,7 @@ var TextTransmitter = (function() {
     var textbox;
     var warningbox;
     var transmit;
+    var resumeAudio;
 
     function onTransmitFinish() {
         textbox.focus();
@@ -19,7 +20,7 @@ var TextTransmitter = (function() {
     };
 
     function onClick(e) {
-        Quiet.initAudioContext();
+        resumeAudio.resumeAudio();
         e.target.removeEventListener(e.type, arguments.callee);
         e.target.disabled = true;
         var originalText = e.target.innerText;
