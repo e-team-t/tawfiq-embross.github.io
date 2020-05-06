@@ -64,13 +64,7 @@ var Quiet = (function() {
             console.log(audioCtx.sampleRate);
         }
     };
-    
-    var resumeAudio = function() {
-        if (audioCtx !== undefined) {
-            audioCtx.resume();
-            console.log(audioCtx.state);
-        }
-    };
+   
 
     function fail(reason) {
         failReason = reason;
@@ -496,6 +490,7 @@ var Quiet = (function() {
             if (destroyed) {
                 return;
             }
+            audioCtx.resume();
             // slice up into frames and push the frames to a list
             for (var i = 0; i < buf.byteLength; ) {
                 var frame = buf.slice(i, i + frame_len);
