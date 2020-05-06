@@ -16,10 +16,10 @@ var TextTransmitter = (function() {
         var originalText = btn.innerText;
         btn.innerText = btn.getAttribute('data-quiet-sending-text');
         btn.setAttribute('data-quiet-sending-text', originalText);
+        Quiet.initAudioContext();
     };
 
     function onClick(e) {
-        audioCtx2 = new (window.AudioContext || window.webkitAudioContext)();
         e.target.removeEventListener(e.type, arguments.callee);
         e.target.disabled = true;
         var originalText = e.target.innerText;
