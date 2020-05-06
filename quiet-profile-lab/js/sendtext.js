@@ -1,41 +1,41 @@
 var TextTransmitter = (function() {
-    var btns;
+    Quiet.init({
+        profilesPrefix: "/",
+        memoryInitializerPrefix: "/",
+        libfecPrefix: "/"
+    });
+    var btn;
     var textbox;
     var warningbox;
+    var transmit;
 
-    function onTransmitFinish(btn) {
+    function onTransmitFinish() {
         textbox.focus();
+        btn.addEventListener('click', onClick, false);
         btn.disabled = false;
         var originalText = btn.innerText;
         btn.innerText = btn.getAttribute('data-quiet-sending-text');
         btn.setAttribute('data-quiet-sending-text', originalText);
     };
 
-    function onClick(e, transmit) {
+    function onClick(e) {
+        e.target.removeEventListener(e.type, arguments.callee);
         e.target.disabled = true;
         var originalText = e.target.innerText;
         e.target.innerText = e.target.getAttribute('data-quiet-sending-text');
         e.target.setAttribute('data-quiet-sending-text', originalText);
         var payload = textbox.value;
         if (payload === "") {
-            onFinish();
+            onTransmitFinish();
             return;
         }
         transmit.transmit(Quiet.str2ab(payload));
     };
 
-    function setupButton(btn) {
-        var profilename = btn.getAttribute('data-quiet-profile-name');
-        var onFinish = function() { return onTransmitFinish(btn); };
-        var transmit = Quiet.transmitter({profile: profilename, onFinish: onFinish, clampFrame: false});
-        var onBtnClick = function(e) { return onClick(e, transmit); };
-        btn.addEventListener('click', onBtnClick, false);
-    };
-
     function onQuietReady() {
-        for (var i = 0; i < btns.length; i++) {
-            setupButton(btns[i]);
-        }
+        var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
+        transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
+        btn.addEventListener('click', onClick, false);
     };
 
     function onQuietFail(reason) {
@@ -45,9 +45,9 @@ var TextTransmitter = (function() {
     };
 
     function onDOMLoad() {
-        btns = document.querySelectorAll('[data-quiet-send-text-button]');
+        btn = document.querySelector('[data-quiet-send-button]');
         textbox = document.querySelector('[data-quiet-text-input]');
-        warningbox = document.querySelector('[data-quiet-send-text-warning]');
+        warningbox = document.querySelector('[data-quiet-warning]');
         Quiet.addReadyCallback(onQuietReady, onQuietFail);
     };
 
