@@ -64,6 +64,12 @@ var Quiet = (function() {
             console.log(audioCtx.sampleRate);
         }
     };
+    
+    function resumeAudioContext() {
+        if (audioCtx !== undefined) {
+            audioCtx.resume();
+        }
+    };
 
     function fail(reason) {
         failReason = reason;
