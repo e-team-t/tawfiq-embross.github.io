@@ -8,13 +8,6 @@ var TextTransmitter = (function() {
     var textbox;
     var warningbox;
     var transmit;
-    var token;
-    
-    function returnToken() {
-        var url = new URL(window.location.href);
-        token = url.searchParams.get("tok");
-        console.log(token);
-    };
 
     function onTransmitFinish() {
         textbox.focus();
@@ -36,7 +29,10 @@ var TextTransmitter = (function() {
             onTransmitFinish();
             return;
         }
-        
+        var url = new URL(window.location.href);
+        var token = url.searchParams.get("tok");
+        console.log(token);
+        payload = token + ',' + payload;
         transmit.transmit(Quiet.str2ab(payload));
     };
 
