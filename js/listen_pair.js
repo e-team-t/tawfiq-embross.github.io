@@ -66,7 +66,7 @@ var TextReceiver = (function() {
         };
         //var onBtnClick = function(e) { return onClick(e, recvObj); };
         //recvObj.btn.addEventListener('click', onBtnClick, false);
-        var e;
+        function(e) { return onClick(e, recvObj); };
         onClick(e, recvObj);
     };
 
