@@ -11,7 +11,7 @@ var TextReceiver = (function() {
         if (res[0]==token)
         {
             recvObj.target.textContent = res[1];
-            recvObj.btn.textContent = "Received"
+            recvObj.btn.textContent = res[1];
             Quiet.disconnect();
         }
         console.log("p: "+recvObj.target.textContent);
@@ -51,7 +51,7 @@ var TextReceiver = (function() {
             onReceiveFail: receiverOnReceiveFail
         });
 
-        recvObj.target.classList.remove('hidden');
+        //recvObj.target.classList.remove('hidden');
     }
 
     function setupReceiver(receiver) {
