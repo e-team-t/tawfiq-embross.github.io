@@ -4,6 +4,7 @@ var TextReceiver = (function() {
     function onReceive(recvPayload, recvObj) {
         recvObj.content = Quiet.mergeab(recvObj.content, recvPayload);
         recvObj.target.textContent = Quiet.ab2str(recvObj.content);
+        console.log(recvObj.target.textContent);
         recvObj.successes++;
         var total = recvObj.failures + recvObj.successes
         var ratio = recvObj.failures/total * 100;
