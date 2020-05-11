@@ -35,11 +35,11 @@ var TextReceiver = (function() {
         recvObj.warningbox.textContent = "You may need to move the transmitter closer to the receiver and set the volume to 50%. Packet Loss: " + recvObj.failures + "/" + total + " (" + ratio.toFixed(0) + "%)";
     };
 
-    function onClick(e, recvObj) {
-        e.target.disabled = true;
-        var originalText = e.target.innerText;
-        e.target.innerText = e.target.getAttribute('data-quiet-receiving-text');
-        e.target.setAttribute('data-quiet-receiving-text', originalText);
+    function onClick(recvObj) {
+        recvObj.target.disabled = true;
+        var originalText = recvObj.target.innerText;
+        recvObj.target.innerText = recvObj.target.getAttribute('data-quiet-receiving-text');
+        recvObj.target.setAttribute('data-quiet-receiving-text', originalText);
 
         var receiverOnReceive = function(payload) { onReceive(payload, recvObj); };
         var receiverOnReceiverCreateFail = function(reason) { onReceiverCreateFail(reason, recvObj); };
@@ -63,8 +63,8 @@ var TextReceiver = (function() {
             failures: 0,
             content: new ArrayBuffer(0)
         };
-        var onBtnClick = function(e) { return onClick(e, recvObj); };
-        recvObj.btn.addEventListener('click', onBtnClick, false);
+        onClick(recvObj);
+        
     };
 
     function onQuietReady() {
