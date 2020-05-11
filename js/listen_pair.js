@@ -67,9 +67,9 @@ var TextReceiver = (function() {
     };
 
     function onQuietReady() {
-        for (var i = 0; i < receivers.length; i++) {
-            setupReceiver(receivers[i]);
-        }
+       // for (var i = 0; i < receivers.length; i++) {
+            setupReceiver(receivers[0]);
+       // }
     };
 
     function onQuietFail(reason) {
