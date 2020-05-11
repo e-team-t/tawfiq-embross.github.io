@@ -5,12 +5,12 @@ var TextReceiver = (function() {
         recvObj.content = Quiet.mergeab(recvObj.content, recvPayload);
         var url = new URL(window.location.href);
         var token = url.searchParams.get("tok");
-        console.log(token);
+        console.log("t: "+token);
         var str = Quiet.ab2str(recvObj.content);
         var res = str.split(";");
         if (res[0]==token)
         recvObj.target.textContent = res[1];
-        console.log(recvObj.target.textContent);
+        console.log("p: "+recvObj.target.textContent);
         recvObj.successes++;
         var total = recvObj.failures + recvObj.successes
         var ratio = recvObj.failures/total * 100;
