@@ -1,0 +1,41 @@
+<h1>Start Pairing</h1>
+<form action="#">
+</form>
+
+<canvas id="canvas"></canvas>
+
+<script src="node_modules/qrcode/build/qrcode.min.js"></script>
+
+<script>
+var ALPHABET = '0123456789abcdef';
+var TOKEN_LENGTH = 5;
+function generateToken() {
+  var token = '';
+  var count = 0;
+  var char;
+  var lastChar;
+  while (count < TOKEN_LENGTH) {
+    // Generate a random value from the alphabet.
+    var index = Math.floor(Math.random() * ALPHABET.length);
+    char = ALPHABET[index];
+    if (char != lastChar) {
+      count += 1;
+      token += char;
+      lastChar = char;
+    }
+  }
+  return token;
+}
+var token2 = generateToken();
+  QRCode.toCanvas(document.getElementById('canvas'), 'https://tawfiq-embross.github.io/send_pair.html?tok='+token2, function (error) {
+    if (error) console.error(error)
+    console.log(token2);
+    console.log('https://tawfiq-embross.github.io/listen_pair.html?tok='+token2);
+  })
+
+
+// TODO: Send the token to the other device too.
+
+// When user submits the form, send a message.
+
+</script>
