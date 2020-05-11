@@ -6,7 +6,10 @@ var TextReceiver = (function() {
         var url = new URL(window.location.href);
         var token = url.searchParams.get("tok");
         console.log(token);
-        recvObj.target.textContent = Quiet.ab2str(recvObj.content);
+        var str = Quiet.ab2str(recvObj.content);
+        var res = str.split(";");
+        if (res[0]==token)
+        recvObj.target.textContent = res[1];
         console.log(recvObj.target.textContent);
         recvObj.successes++;
         var total = recvObj.failures + recvObj.successes
