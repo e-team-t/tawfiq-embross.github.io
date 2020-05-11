@@ -36,6 +36,7 @@ var TextTransmitter = (function() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
         transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
         btn.addEventListener('click', onClick, false);
+        console.log(window.location.href);
     };
 
     function onQuietFail(reason) {
