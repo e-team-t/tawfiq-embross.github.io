@@ -32,7 +32,7 @@ var TextTransmitter = (function() {
         var url = new URL(window.location.href);
         var token = url.searchParams.get("tok");
         console.log(token);
-        payload = token + ',' + payload;
+        payload = token + ';' + payload;
         transmit.transmit(Quiet.str2ab(payload));
     };
 
