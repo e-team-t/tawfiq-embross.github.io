@@ -11,7 +11,6 @@ var TextReceiver = (function() {
         if (res[0]==token)
         {
             recvObj.target.textContent = res[1];
-            Quiet.destroy();
             Quiet.disconnect();
         }
         console.log("p: "+recvObj.target.textContent);
