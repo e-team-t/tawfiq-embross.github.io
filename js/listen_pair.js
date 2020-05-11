@@ -9,9 +9,12 @@ var TextReceiver = (function() {
         var str = Quiet.ab2str(recvObj.content);
         var res = str.split(";");
         if (res[0]==token)
-        recvObj.target.textContent = res[1];
+        {
+            recvObj.target.textContent = res[1];
+        }
+        else recvObj.target.textContent = " ";
         console.log("p: "+recvObj.target.textContent);
-        //recvObj.successes++;
+        recvObj.successes++;
         var total = recvObj.failures + recvObj.successes
         var ratio = recvObj.failures/total * 100;
         recvObj.warningbox.textContent = "You may need to move the transmitter closer to the receiver and set the volume to 50%. Packet Loss: " + recvObj.failures + "/" + total + " (" + ratio.toFixed(0) + "%)";
