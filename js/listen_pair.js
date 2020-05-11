@@ -11,8 +11,8 @@ var TextReceiver = (function() {
         if (res[0]==token)
         {
             recvObj.target.textContent = res[1];
+            Quiet.disconnet();
         }
-        else recvObj.target.textContent = " ";
         console.log("p: "+recvObj.target.textContent);
         recvObj.successes++;
         var total = recvObj.failures + recvObj.successes
@@ -67,9 +67,9 @@ var TextReceiver = (function() {
     };
 
     function onQuietReady() {
-       // for (var i = 0; i < receivers.length; i++) {
-            setupReceiver(receivers[0]);
-       // }
+       for (var i = 0; i < receivers.length; i++) {
+            setupReceiver(receivers[i]);
+       }
     };
 
     function onQuietFail(reason) {
