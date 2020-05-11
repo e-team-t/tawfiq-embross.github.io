@@ -3,6 +3,7 @@ var TextReceiver = (function() {
 
     function onReceive(recvPayload, recvObj) {
         recvObj.content = Quiet.mergeab(recvObj.content, recvPayload);
+        recvObj.target.textContent = "";
         var url = new URL(window.location.href);
         var token = url.searchParams.get("tok");
         console.log("t: "+token);
