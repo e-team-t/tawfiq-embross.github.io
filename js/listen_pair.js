@@ -64,8 +64,10 @@ var TextReceiver = (function() {
             failures: 0,
             content: new ArrayBuffer(0)
         };
-        var onBtnClick = function(e) { return onClick(e, recvObj); };
-        recvObj.btn.addEventListener('click', onBtnClick, false);
+        //var onBtnClick = function(e) { return onClick(e, recvObj); };
+        //recvObj.btn.addEventListener('click', onBtnClick, false);
+        var e;
+        onClick(e, recvObj);
     };
 
     function onQuietReady() {
