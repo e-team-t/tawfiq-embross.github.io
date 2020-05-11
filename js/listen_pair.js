@@ -3,7 +3,6 @@ var TextReceiver = (function() {
 
     function onReceive(recvPayload, recvObj) {
         recvObj.content = Quiet.mergeab(recvObj.content, recvPayload);
-        recvObj.target.textContent = "";
         var url = new URL(window.location.href);
         var token = url.searchParams.get("tok");
         console.log("t: "+token);
@@ -12,7 +11,7 @@ var TextReceiver = (function() {
         if (res[0]==token)
         recvObj.target.textContent = res[1];
         console.log("p: "+recvObj.target.textContent);
-        recvObj.successes++;
+        //recvObj.successes++;
         var total = recvObj.failures + recvObj.successes
         var ratio = recvObj.failures/total * 100;
         recvObj.warningbox.textContent = "You may need to move the transmitter closer to the receiver and set the volume to 50%. Packet Loss: " + recvObj.failures + "/" + total + " (" + ratio.toFixed(0) + "%)";
