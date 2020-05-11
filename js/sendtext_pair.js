@@ -36,7 +36,9 @@ var TextTransmitter = (function() {
         var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
         transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
         btn.addEventListener('click', onClick, false);
-        console.log(window.location.href);
+        var url = new URL(window.location.href);
+        var token = url.searchParams.get("tok");
+        console.log(token);
     };
 
     function onQuietFail(reason) {
