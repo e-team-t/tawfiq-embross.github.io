@@ -10,6 +10,20 @@
     <script type="text/javascript" src="js/quiet.js"></script>
     <script type="text/javascript" src="js/sendtext_pair.js"></script>
     <script async type="text/javascript" src="js/quiet-emscripten.js"></script>
+        <script src="js/pair-server.js"></script>
+    <script>
+
+      var url = new URL(window.location.href);
+      var token = url.searchParams.get("tok");
+      // Connect to the pairing server.
+      var pairServer = new PairServer();
+      // Confirm the pairing process.
+      // TODO: use the actual token received from the other device.
+      pairServer.on('ready', function() {
+        pairServer.confirm(token);  
+      });
+
+   </script>
   </head>
   <body>
     <div class="hidden" data-quiet-profile-name="audible"></div>
