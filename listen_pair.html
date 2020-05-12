@@ -24,10 +24,9 @@
       // Confirm the pairing process.
       // TODO: use the actual token received from the other device.
       pairServer.on('ready', function() {
-        pairServer.confirm(token);
-        pairServer.send(token);
+        pairServer.confirm(token);  
       });
-
+      pairServer.send(token);
 
    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
