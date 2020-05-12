@@ -42,7 +42,7 @@ var TextReceiver = (function() {
         //e.target.innerText = e.target.getAttribute('data-quiet-receiving-text');
         //e.target.setAttribute('data-quiet-receiving-text', originalText);
         
-        recvObj.btn.textContent = "Listening ..."
+        
 
         var receiverOnReceive = function(payload) { onReceive(payload, recvObj); };
         var receiverOnReceiverCreateFail = function(reason) { onReceiverCreateFail(reason, recvObj); };
@@ -68,7 +68,7 @@ var TextReceiver = (function() {
         };
         var onBtnClick = function(e) { return onClick(e, recvObj); };
         recvObj.btn.addEventListener('click', onBtnClick, false);
-        //var e;
+        recvObj.btn.textContent = "Listening ...";
         //e.target = 'button.btn.btn-default';
         //onClick(e, recvObj);
         
