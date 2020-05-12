@@ -43,7 +43,7 @@ var TextReceiver = (function() {
         //e.target.setAttribute('data-quiet-receiving-text', originalText);
         
         
-
+        recvObj.target.disabled = true;
         var receiverOnReceive = function(payload) { onReceive(payload, recvObj); };
         var receiverOnReceiverCreateFail = function(reason) { onReceiverCreateFail(reason, recvObj); };
         var receiverOnReceiveFail = function(num_fails) { onReceiveFail(num_fails, recvObj); };
