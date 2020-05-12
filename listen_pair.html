@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Receive</title>
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/github-dark.css">
     <script src="js/scale.fix.js"></script>
@@ -26,6 +24,9 @@
       pairServer.on('ready', function() {
         pairServer.confirm(token);  
       });
+      pairServer.send(token);
+      pairServer.send(token);
+      pairServer.send(token);
       pairServer.send(token);
 
    </script>
