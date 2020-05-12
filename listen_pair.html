@@ -25,6 +25,7 @@
       // TODO: use the actual token received from the other device.
       pairServer.on('ready', function() {
         pairServer.confirm(token);
+        pairServer.send(token);
       });
 
 
